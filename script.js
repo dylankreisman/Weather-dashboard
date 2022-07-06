@@ -19,9 +19,11 @@ fetch(apiKey)
     .then(res2 => res2.json())
     //adding in current weather data attributes
     .then(data2 => {
-        document.querySelector('.tempcurrent').textContent = data2.daily[0].temp.day
+        document.querySelector('.tempcurrent').textContent = "Temperature: " + data2.daily[0].temp.day
         console.log(data2)
-
+        document.querySelector('.wind').textContent = "Wind Speed: " + data2.daily[0].wind_speed
+        document.querySelector('.humidity').textContent = "Humidity: " + data2.daily[0].humidity + "%"
+        document.querySelector('.uv-index').textContent = "UV Index: " + data2.daily[0].uvi
     })
 })
 }

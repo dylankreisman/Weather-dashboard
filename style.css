@@ -1,0 +1,9 @@
+.row-1{
+    float: left;
+    width: 25%;
+    display: flex;
+}
+
+#submitBtn {
+    margin: 15px;
+}

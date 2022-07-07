@@ -8,7 +8,7 @@ function getCurrent(place) {
     // making values for city 
     var city = place
     console.log(city)
-    var apiKey = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=58fb14ad5370b87fc70f19a964d8ea8c&units=imperial"
+    var apiKey = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=58fb14ad5370b87fc70f19a964d8ea8c&units=imperial"
     var currentTime = moment().format('M/DD/YYYY')
     cityName.textContent = city + '          ' + currentTime
 
@@ -91,7 +91,7 @@ function citiesStored() {
 function storeCity() {
     if (!cityArray.includes(cityEl.value)) {
         cityArray.push(cityEl.value)
-        getCity()
+        //getCity()
         let storedArray = JSON.stringify(cityArray)
         localStorage.setItem('cities', storedArray)
         cityEl.value = ""
@@ -103,7 +103,7 @@ function storeCity() {
 function getCity() {
     cityArray = JSON.parse(localStorage.getItem('cities'))
     console.log(cityArray)
-    citiesStored()
+    //citiesStored()
 }
 
 

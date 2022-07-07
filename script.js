@@ -1,13 +1,13 @@
 var cityName = document.querySelector("#cityname")
 var cityEl = document.getElementById('city-search')
 var cityArray = ['']
-
+var savedCities = document.getElementById('cities-bar')
 
 // finding results for current city info for weather
-function getCurrent(e) {
+function getCurrent(place) {
     // e.preventDefault()
     // making values for city 
-    var city = cityEl.value
+    var city = place
     console.log(city)
     var apiKey = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=58fb14ad5370b87fc70f19a964d8ea8c&units=imperial"
     var currentTime = moment().format('M/DD/YYYY')
@@ -30,6 +30,7 @@ function getCurrent(e) {
                     document.querySelector('#uv-index').textContent = "UV Index: " + data2.daily[0].uvi
 
                     getFuture(data2.daily)
+                    storeCity()
                 })
         })
 }
@@ -54,19 +55,19 @@ function getFuture(forecast) {
         forecastCard.appendChild(date)
 
         let condition = document.createElement('li')
-        condition.innerHTML = forecast[i].weather[0].description
+        condition.innerHTML = 'Weather: ' + forecast[i].weather[0].description
         date.appendChild(condition)
 
         let windNew = document.createElement('li')
-        windNew.innerHTML = forecast[i].wind_speed + ' MPH'
+        windNew.innerHTML = 'Wind: ' + forecast[i].wind_speed + ' MPH'
         date.appendChild(windNew)
 
         let tempNew = document.createElement('li')
-        tempNew.innerHTML = forecast[i].temp.day + "°F"
+        tempNew.innerHTML = 'Temp: ' + forecast[i].temp.day + "°F"
         date.appendChild(tempNew)
 
         let humidNew = document.createElement('li')
-        humidNew.innerHTML = forecast[i].humidity + '%'
+        humidNew.innerHTML = 'Humidity: ' + forecast[i].humidity + '%'
         date.appendChild(humidNew)
 
     }
@@ -75,14 +76,56 @@ function getFuture(forecast) {
 
 }
 
+function citiesStored() {
+    var newCityArr = cityArray.slice(1)
+    for (let i = 0; i < newCityArr.length; i++) {
+      var newCity = document.createElement('button')
+      newCity.setAttribute('class', 'city-btn')
+      newCity.textContent = newCityArr[i]
+      savedCities.appendChild(newCity)
+      newCity.addEventListener('click', () => {
+        getCurrent(newCity.textContent)
+      })
+    }
+  }
+
+function storeCity() {
+    if (!cityArray.includes(cityEl.value)) {
+        cityArray.push(cityEl.value)
+        getCity()
+        let storedArray = JSON.stringify(cityArray)
+        localStorage.setItem('cities', storedArray)
+        cityEl.value = ""
+        addNewCity()
+        console.log()
+    }
+}  
+
+function getCity() {
+    cityArray = JSON.parse(localStorage.getItem('cities'))
+    console.log(cityArray)
+    citiesStored()
+}
+
+
+function addNewCity() {
+ 
+var newCity = document.createElement('button')
+      newCity.setAttribute('class', 'city-btn')
+      newCity.textContent = cityArray[cityArray.length-1]
+      savedCities.appendChild(newCity)
+      newCity.addEventListener('click', () => {
+        getCurrent(newCity.textContent)
+      })
+}
+
 //event listener at the ID button to run function once clicked
 var search = document.getElementById('submitBtn')
 search.addEventListener('click', (e) => {
     e.preventDefault()
-    getCurrent()
+    getCurrent(cityEl.value)
 })
 
-function citiesStored() {
-     
-}
+
+
 

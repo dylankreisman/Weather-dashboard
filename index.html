@@ -18,36 +18,31 @@
     </header>
 
     <section>
-        <div class="container"
-        <div class="row-1 bg-light"> 
-            <form class="column-md-6"> 
-                <h2>Search for a city:</h2>
-                <input type="text" id="city-search">
+        <div class="card w-30 float-left mx-3 py-3 px-1">
+            <form class="column-md-3"> 
+                <h2 class="p2">Search for a city:</h2>
+                <input type="text" id="city-search" class="p2">
                 <br>
-                <button id="submitBtn" type="submit" class="m-3">Submit</button>
+                <button id="submitBtn" type="submit" class="m-3 p2">Submit</button>
             </form>
-            <div>
-                <ul>
-                </ul>
-            </div>
         </div>
 
         <!--Updated city and temperature-->
         <div class="container">
-            <div class="row"></div>
-                <h2 id="cityname"></h2>
-                <p id="tempcurrent"></p>
-                <p id="wind" ></p>
-                <p id="humidity"></p>
-                <p id="uv-index"></p>
-
+            <div class="row column-md-8"></div>
+                <h2 id="cityname" class="text-center"></h2>
+                <ul class="list-group  border border-dark">
+                <li class="list-group-item" id="tempcurrent"></li>
+                <li class="list-group-item" id="wind"></li>
+                <li class="list-group-item" id="humidity"></li>
+                <li class="list-group-item" id="uv-index"></li>
+                </ul>
         </div>
         
         <!--5 day weather forecast cards-->
-        <div class="container">
-            <div id="row">
-            </div>
-    </div>
+        <div id="fiveDay">
+
+         </div>
     </section>
     <script src="./script.js"></script>
 </body>

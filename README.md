@@ -53,4 +53,4 @@ function getCurrent(place) {
 }
 ~~~~
 ## Gif
-![Gif](Weather-dashboard/assets/Weather-Dashboard.gif)
+![Gif](assets/Weather-Dashboard.gif)

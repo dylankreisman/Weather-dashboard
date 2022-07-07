@@ -5,7 +5,6 @@ var savedCities = document.getElementById('cities-bar')
 
 // finding results for current city info for weather
 function getCurrent(place) {
-    // e.preventDefault()
     // making values for city 
     var city = place
     console.log(city)
